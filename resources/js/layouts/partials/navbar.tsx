@@ -29,12 +29,17 @@ export default function Navbar() {
                             <Link href='/' className='mr-3'>
                                 <ApplicationLogo className='w-9 fill-foreground' />
                             </Link>
-                            <NavLink active={route().current('home')} href='/'>
-                                Home
-                            </NavLink>
-                            <NavLink active={route().current('about')} href={route('about')}>
-                                About
-                            </NavLink>
+                            {!auth.user && (
+                                <>
+                                    <NavLink active={route().current('home')} href='/'>
+                                        Home
+                                    </NavLink>
+
+                                    <NavLink active={route().current('about')} href={route('about')}>
+                                        About
+                                    </NavLink>
+                                </>
+                            )}
                         </div>
                         {auth.user ? (
                             <div className='flex items-center gap-x-1'>
