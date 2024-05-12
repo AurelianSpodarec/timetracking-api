@@ -19,3 +19,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 require __DIR__ . '/features.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/dev.php';
+
+
+Route::resource('clients', App\Http\Controllers\ClientController::class);
+
+Route::resource('projects', App\Http\Controllers\ProjectController::class);
+
+Route::resource('timers', App\Http\Controllers\TimerController::class);
+
+Route::resource('reports', App\Http\Controllers\ReportController::class);

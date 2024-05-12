@@ -1,0 +1,39 @@
+models:
+  Client:
+    id: id@increments
+    name: string
+    user_id: belongsTo('User')
+    timestamps: true
+  Project:
+    id: id@increments
+    name: string
+    hourlyRate: float@nullable
+    dailyRate: float@nullable
+    client_id: belongsTo('Client')
+    timestamps: true
+  Timer:
+    id: id@increments
+    startTime: dateTime
+    endTime: dateTime@nullable
+    manualEntry: boolean
+    updatedManually: boolean
+    user_id: belongsTo('User')
+    project_id: belongsTo('Project')
+    timestamps: true
+  Report:
+    id: id@increments
+    name: string
+    filePath: string
+    user_id: belongsTo('User')
+    timestamps: true
+controllers:
+  Client:
+    resource
+  Project:
+    resource
+  Timer:
+    resource
+  Report:
+    resource
+
+
