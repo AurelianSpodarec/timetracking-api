@@ -16,6 +16,12 @@ interface Props {
     className?: string;
 }
 
+// profile
+    - edit
+    - show
+    - delete
+    - delete
+
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className }: Props) {
     const { auth } = usePage<PageProps>().props;
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
