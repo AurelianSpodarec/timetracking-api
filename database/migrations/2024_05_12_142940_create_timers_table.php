@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('timers', function (Blueprint $table) {
-            $table->string('id');
+            $table->id();
             $table->dateTime('startTime');
             $table->string('endTime');
             $table->boolean('manualEntry');

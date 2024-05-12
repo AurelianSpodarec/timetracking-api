@@ -49,4 +49,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // protected $fillable = [
+    //     'name', 'email', 'username', 'password',
+    // ];
+
+    // public static function create(array $attributes = [])
+    // {
+    //     $user = new static($attributes);
+    //     $user->save();
+    //     return $user;
+    // }
 }
