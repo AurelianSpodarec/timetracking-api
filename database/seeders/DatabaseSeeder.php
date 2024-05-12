@@ -48,14 +48,14 @@ class DatabaseSeeder extends Seeder
                 $projects = [
                     [
                         'name' => 'Project 1',
-                        'hourlyRate' => 50.00,
-                        'dailyRate' => 60.00,
+                        'hourly_rate' => 50.00,
+                        'daily_rate' => 60.00,
                         'client_id' => $client->id,
                     ],
                     [
                         'name' => 'Project 2',
-                        'hourlyRate' => 60.00,
-                        'dailyRate' => 60.00,
+                        'hourly_rate' => 60.00,
+                        'daily_rate' => 60.00,
                         'client_id' => $client->id,
                     ],
                     // Add more projects as needed
@@ -67,10 +67,10 @@ class DatabaseSeeder extends Seeder
                     // Create timers
                     $timers = [
                         [
-                            'startTime' => now(),
-                            'endTime' => now(),
-                            'manualEntry' => false,
-                            'updatedManually' => false,
+                            'start_time' => now(),
+                            'end_time' => now(),
+                            'manual_entry' => false,
+                            'updated_manually' => false,
                             'user_id' => $user->id,
                             'project_id' => $project->id,
                         ],
@@ -86,13 +86,15 @@ class DatabaseSeeder extends Seeder
                 $reports = [
                     [
                         'name' => 'Report 1',
-                        'filePath' => '/path/to/report1.pdf',
+                        'file_path' => '/path/to/report1.pdf',
                         'user_id' => $user->id,
+                        'client_id' => $client->id,
                     ],
                     [
                         'name' => 'Report 2',
-                        'filePath' => '/path/to/report2.pdf',
+                        'file_path' => '/path/to/report2.pdf',
                         'user_id' => $user->id,
+                        'client_id' => $client->id,
                     ],
                     // Add more reports as needed
                 ];

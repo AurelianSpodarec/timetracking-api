@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('timers', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('startTime');
-            $table->string('endTime');
-            $table->boolean('manualEntry');
-            $table->boolean('updatedManually');
-            $table->string('user_id');
-            $table->string('project_id');
+            $table->dateTime('start_time');
+            $table->string('end_time');
+            $table->boolean('manual_entry');
+            $table->boolean('updated_manually');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });
     }

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('hourlyRate');
-            $table->string('dailyRate');
-            $table->string('client_id');
+            $table->string('hourly_rate');
+            $table->string('daily_rate');
+            $table->foreignId('client_id')->constrained();
             $table->timestamps();
         });
     }
