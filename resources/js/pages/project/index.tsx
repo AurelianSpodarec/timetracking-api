@@ -6,8 +6,9 @@ import { AppLayout } from '@/layouts/app-layout';
 import Container from '@/components/container';
 
 export default function Project({ projects }: any) {
-    console.log({ projects });
-    const { auth } = usePage<PageProps>().props;
+    const { auth, session } = usePage<PageProps>().props;
+    // @todo this is getting rendered twice, figure out why it is doing that and fix it please
+    console.log({ projects, auth });
     return (
         <>
             <Head title='projects' />
