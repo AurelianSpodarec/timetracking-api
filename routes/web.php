@@ -16,10 +16,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('profile', 'destroy')->name('profile.destroy');
     });
 
-    Route::resource('clients', App\Http\Controllers\ClientController::class);
-    Route::resource('projects', App\Http\Controllers\ProjectController::class);
-    Route::resource('timers', App\Http\Controllers\TimerController::class);
-    Route::resource('reports', App\Http\Controllers\ReportController::class);
+    Route::controller(Controllers\ProjectController::class)->middleware('auth')->group(function () {
+        Route::get('projects', 'index')->name('project.index');
+        Route::get('project/edit', 'edit')->name('project.edit');
+        Route::get('project/update', 'update')->name('project.update');
+        Route::get('project/destroy', 'destroy')->name('project.destroy');
+    });
+
+    // Route::get('project/index', 'index')->name('project.index');
+    // Route::resource('clients', App\Http\Controllers\ClientController::class);
+    // Route::resource('projects', App\Http\Controllers\ProjectController::class);
+    // Route::resource('timers', App\Http\Controllers\TimerController::class);
+    // Route::resource('reports', App\Http\Controllers\ReportController::class);
 });
 
 require __DIR__ . '/features.php';

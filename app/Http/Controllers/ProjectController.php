@@ -11,11 +11,13 @@ use Illuminate\View\View;
 
 class ProjectController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request)
     {
         $projects = Project::all();
 
-        return view('project.index', compact('projects'));
+        return inertia('project/index', [
+            'projects' =>  $projects,
+        ]);
     }
 
     public function create(Request $request): View
@@ -34,12 +36,16 @@ class ProjectController extends Controller
 
     public function show(Request $request, Project $project): View
     {
-        return view('project.show', compact('project'));
+        return inertia('project/index', [
+            'projects' =>  $projects,
+        ]);
     }
 
     public function edit(Request $request, Project $project): View
     {
-        return view('project.edit', compact('project'));
+        return inertia('project/edit', [
+            'projects' =>  $projects,
+        ]);
     }
 
     public function update(ProjectUpdateRequest $request, Project $project): RedirectResponse
@@ -48,13 +54,13 @@ class ProjectController extends Controller
 
         $request->session()->flash('project.id', $project->id);
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects');
     }
 
     public function destroy(Request $request, Project $project): RedirectResponse
     {
         $project->delete();
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects');
     }
 }
