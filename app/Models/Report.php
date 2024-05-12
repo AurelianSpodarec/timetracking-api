@@ -16,7 +16,7 @@ class Report extends Model
      */
     protected $fillable = [
         'name',
-        'filePath',
+        'file_path',
         'user_id',
     ];
 }

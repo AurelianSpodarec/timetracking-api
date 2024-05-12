@@ -16,8 +16,8 @@ class Project extends Model
      */
     protected $fillable = [
         'name',
-        'hourlyRate',
-        'dailyRate',
+        'hourly_rate',
+        'daily_rate',
         'client_id',
     ];
 }

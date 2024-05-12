@@ -15,10 +15,10 @@ class Timer extends Model
      * @var array
      */
     protected $fillable = [
-        'startTime',
-        'endTime',
-        'manualEntry',
-        'updatedManually',
+        'start_time',
+        'end_time',
+        'manual_entry',
+        'updated_manually',
         'user_id',
         'project_id',
     ];
