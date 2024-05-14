@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Controllers\HomeController::class)->name('home');
 
 Route::get('about', Controllers\AboutController::class)->name('about');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', Controllers\DashboardController::class)->name('dashboard');
 
@@ -13,6 +14,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('profile/edit', 'edit')->name('profile.edit');
         Route::patch('profile', 'update')->name('profile.update');
         Route::delete('profile', 'destroy')->name('profile.destroy');
+    });
+
+    Route::controller(Controllers\ProjectController::class)->middleware('auth')->group(function () {
+        Route::get('projects', 'index')->name('project.index');
+        Route::get('project/edit', 'edit')->name('project.edit');
+        Route::patch('project', 'update')->name('project.update');
+        Route::delete('project', 'destroy')->name('project.destroy');
     });
 });
 
