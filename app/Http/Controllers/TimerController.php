@@ -8,19 +8,22 @@ use App\Models\Timer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Inertia\Response;
 
 class TimerController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request): Response
     {
         $timers = Timer::all();
 
-        return view('timer.index', compact('timers'));
+        return inertia('timer/index', [
+            'timers' =>  $timers,
+        ]);
     }
 
-    public function create(Request $request): View
+    public function create(Request $request): Response
     {
-        return view('timer.create');
+        return inertia('timer.create');
     }
 
     public function store(TimerStoreRequest $request): RedirectResponse
@@ -32,14 +35,18 @@ class TimerController extends Controller
         return redirect()->route('timers.index');
     }
 
-    public function show(Request $request, Timer $timer): View
+    public function show(Request $request, Timer $timer): Response
     {
-        return view('timer.show', compact('timer'));
+        return inertia('timer/show', [
+            'timer' =>  $timer,
+        ]);
     }
 
-    public function edit(Request $request, Timer $timer): View
+    public function edit(Request $request, Timer $timer): Response
     {
-        return view('timer.edit', compact('timer'));
+        return inertia('timer/edit', [
+            'timer' =>  $timer,
+        ]);
     }
 
     public function update(TimerUpdateRequest $request, Timer $timer): RedirectResponse
