@@ -8,6 +8,7 @@ use App\Models\Project;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Inertia\Response;
 
 class ProjectController extends Controller
 {
@@ -20,9 +21,9 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function create(Request $request): View
+    public function create(Request $request): Response
     {
-        return view('project.create');
+        return inertia('project/create');
     }
 
     public function store(ProjectStoreRequest $request): RedirectResponse
@@ -34,17 +35,17 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function show(Request $request, Project $project): View
+    public function show(Request $request, Project $project): Response
     {
         return inertia('project/index', [
-            'projects' =>  $projects,
+            'project' =>  $project,
         ]);
     }
 
-    public function edit(Request $request, Project $project): View
+    public function edit(Request $request, Project $project): Response
     {
         return inertia('project/edit', [
-            'projects' =>  $projects,
+            'project' =>  $project,
         ]);
     }
 

@@ -8,19 +8,22 @@ use App\Models\Report;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Inertia\Response;
 
 class ReportController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request): \Inertia\Response|\Inertia\ResponseFactory
     {
         $reports = Report::all();
 
-        return view('report.index', compact('reports'));
+        return inertia('report/edit', [
+            'reports' =>  $reports,
+        ]);
     }
 
-    public function create(Request $request): View
+    public function create(Request $request): Response
     {
-        return view('report.create');
+        return inertia('report/create');
     }
 
     public function store(ReportStoreRequest $request): RedirectResponse
@@ -32,14 +35,18 @@ class ReportController extends Controller
         return redirect()->route('reports.index');
     }
 
-    public function show(Request $request, Report $report): View
+    public function show(Request $request, Report $report): Response
     {
-        return view('report.show', compact('report'));
+        return inertia('report/show', [
+            'report' =>  $report,
+        ]);
     }
 
-    public function edit(Request $request, Report $report): View
+    public function edit(Request $request, Report $report): Response
     {
-        return view('report.edit', compact('report'));
+        return inertia('report/edit', [
+            'report' =>  $report,
+        ]);
     }
 
     public function update(ReportUpdateRequest $request, Report $report): RedirectResponse
