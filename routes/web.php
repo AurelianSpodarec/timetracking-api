@@ -22,6 +22,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('project', 'update')->name('project.update');
         Route::delete('project', 'destroy')->name('project.destroy');
     });
+
+    Route::controller(Controllers\ReportController::class)->middleware('auth')->group(function () {
+        Route::get('reports', 'index')->name('report.index');
+        Route::get('report/edit', 'edit')->name('report.edit');
+        Route::patch('report', 'update')->name('report.update');
+        Route::delete('report', 'destroy')->name('report.destroy');
+    });
+
+    Route::controller(Controllers\TimerController::class)->middleware('auth')->group(function () {
+        Route::get('timers', 'index')->name('timer.index');
+        Route::get('timer/edit', 'edit')->name('timer.edit');
+        Route::patch('timer', 'update')->name('timer.update');
+        Route::delete('timer', 'destroy')->name('timer.destroy');
+    });
 });
 
 require __DIR__ . '/features.php';
