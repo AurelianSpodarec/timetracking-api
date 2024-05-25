@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
@@ -14,17 +15,9 @@ class AuthController extends Controller
 {
     use HttpResponses;
 
-    public function register(Request $request) : JsonResponse
+    public function register(StoreUserRequest $request) : JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|string|max:255|unique:users',
-            'password'  => 'required|string'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
+        $request->validated($request->only(['name', 'email', 'password', 'username']));
 
         $user = User::create([
             'name'      => $request->name,
@@ -33,12 +26,19 @@ class AuthController extends Controller
             'password'  => Hash::make($request->password)
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'data'          => $user,
-            'access_token'  => $token,
-            'token_type'    => 'Bearer'
+        return $this->success([
+            'user' => $user,
+            'token' => $user->createToken('auth_token')->plainTextToken
         ]);
+    }
+
+    public function login()
+    {
+
+    }
+
+    public function logout()
+    {
+
     }
 }
