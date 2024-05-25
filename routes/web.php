@@ -53,6 +53,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
+Route::get('/test', function () {
+    return 'API is working';
+});
+
 require __DIR__ . '/features.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/dev.php';
