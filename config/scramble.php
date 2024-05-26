@@ -29,7 +29,7 @@ return [
         /*
          * Description rendered on the home page of the API documentation (`/docs/api`).
          */
-        'description' => '',
+        'description' => /* import scarmble.description.md from resources */ file_get_contents(base_path('resources/markdown/scramble.description.md')),
     ],
 
     /*

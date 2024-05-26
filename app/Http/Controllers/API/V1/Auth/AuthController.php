@@ -28,7 +28,7 @@ class AuthController extends Controller
 
         return $this->success([
             'user' => $user,
-            'token' => $user->createToken('auth_token')->plainTextToken
+            'token' => $user->createToken('auth_token', ['*'], now()->addMonth())->plainTextToken
         ]);
     }
 
