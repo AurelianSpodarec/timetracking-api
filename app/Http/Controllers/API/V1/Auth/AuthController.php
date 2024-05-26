@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\AuthenticatedUserResource;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
@@ -28,12 +29,12 @@ class AuthController extends Controller
         ]);
 
         return $this->success([
-            'user' => $user,
+            'user' => new AuthenticatedUserResource($user),
             'token' => $user->createToken('auth_token', ['*'], now()->addMonth())->plainTextToken
         ]);
     }
 
-    public function login(LoginUserRequest $request)
+    public function login(LoginUserRequest $request): JsonResponse
     {
         $request->validated($request->only(['email', 'password']));
 
@@ -44,12 +45,12 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         return $this->success([
-            'user' => $user,
+            'user' => new AuthenticatedUserResource($user),
             'token' => $user->createToken('auth_token')->plainTextToken
         ]);
     }
 
-    public function logout()
+    public function logout(): JsonResponse
     {
         Auth::user()->currentAccessToken()->delete();
 

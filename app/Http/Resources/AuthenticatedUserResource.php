@@ -11,7 +11,7 @@ class AuthenticatedUserResource extends JsonResource
     {
         return [
             'avatar' => $this->avatar(),
-            'acronym' => $this->createAcronym($request->user()->name),
+            'acronym' => $this->createAcronym($this->username),
             'id' => $this->id,
             'username' => $this->username,
             'name' => $this->name,
