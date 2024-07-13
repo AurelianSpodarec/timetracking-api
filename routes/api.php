@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\Auth\AuthController;
+use App\Http\Controllers\API\V1\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->get('/clients', [ClientController::class, 'index']);
+//Route::group(['middleware' => ['auth:sanctum']], function () {
+//    Route::get('/clients', [ClientController::class, 'index']);
+//});
+
 // Protected routes
 //Route::group(['middleware' => ['auth:sanctum']], function () {
 //    Route::post('/logout', [AuthController::class, 'logout']);

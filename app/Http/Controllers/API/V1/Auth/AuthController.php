@@ -19,12 +19,10 @@ class AuthController extends Controller
 
     public function register(StoreUserRequest $request) : JsonResponse
     {
-        $request->validated($request->only(['name', 'email', 'password', 'username']));
+        $request->validated($request->only(['email', 'password']));
 
         $user = User::create([
-            'name'      => $request->name,
             'email'     => $request->email,
-            'username'     => $request->username,
             'password'  => Hash::make($request->password)
         ]);
 

@@ -32,10 +32,12 @@ class DatabaseSeeder extends Seeder
             $clients = [
                 [
                     'name' => 'Client A',
+                    'statue' => true,
                     'user_id' => $user->id,
                 ],
                 [
                     'name' => 'Client B',
+                    'statue' => false,
                     'user_id' => $user->id,
                 ],
                 // Add more clients as needed
