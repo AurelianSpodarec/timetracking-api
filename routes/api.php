@@ -24,12 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
-Route::middleware('auth:sanctum')->get('/clients', [ClientController::class, 'index']);
-//Route::group(['middleware' => ['auth:sanctum']], function () {
-//    Route::get('/clients', [ClientController::class, 'index']);
-//});
+Route::post('/clients', [ClientController::class, 'index']);
 
-// Protected routes
+// @todo Add middleware for sanctum still getting back as unauntenticated
 //Route::group(['middleware' => ['auth:sanctum']], function () {
-//    Route::post('/logout', [AuthController::class, 'logout']);
+//    Route::post('/clients', [ClientController::class, 'index']);
 //});

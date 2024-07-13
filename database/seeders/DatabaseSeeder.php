@@ -32,12 +32,12 @@ class DatabaseSeeder extends Seeder
             $clients = [
                 [
                     'name' => 'Client A',
-                    'statue' => true,
+                    'status' => true,
                     'user_id' => $user->id,
                 ],
                 [
                     'name' => 'Client B',
-                    'statue' => false,
+                    'status' => false,
                     'user_id' => $user->id,
                 ],
                 // Add more clients as needed
@@ -50,14 +50,10 @@ class DatabaseSeeder extends Seeder
                 $projects = [
                     [
                         'name' => 'Project 1',
-                        'hourly_rate' => 50.00,
-                        'daily_rate' => 60.00,
                         'client_id' => $client->id,
                     ],
                     [
                         'name' => 'Project 2',
-                        'hourly_rate' => 60.00,
-                        'daily_rate' => 60.00,
                         'client_id' => $client->id,
                     ],
                     // Add more projects as needed

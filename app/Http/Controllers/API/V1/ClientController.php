@@ -8,20 +8,22 @@ use App\Http\Requests\ClientUpdateRequest;
 use App\Http\Resources\AuthenticatedUserResource;
 use App\Models\Client;
 use App\Models\User;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Client\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 
 class ClientController extends Controller
 {
-    public function index(Request $request, User $user): \Illuminate\Http\JsonResponse
-    {
-        $clients = Client::where('user_id', $user->id)->get();
+    use HttpResponses;
 
-        // Return JSON response with clients data
-        return response()->json([
-            'success' => true,
+    public function index(): \Illuminate\Http\JsonResponse
+    {
+        $clients = Client::where('user_id', 1)->get();
+
+        return $this->success([
             'data' => [
                 'clients' => $clients,
             ],
